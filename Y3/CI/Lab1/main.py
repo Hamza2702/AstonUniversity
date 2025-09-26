@@ -42,7 +42,6 @@ def create_route():
 
     return route
 
-
 if __name__ == "__main__":
     adjacency_matrix = create_matrix(city_count)
     route = create_route()
