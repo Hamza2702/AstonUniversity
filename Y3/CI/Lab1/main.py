@@ -45,8 +45,11 @@ def create_route():
 
 # Task 3
 def random_route(n_cities):
-    route = list(range(n_cities))
-    random.shuffle(route)
+    random_route_num = int(input("Enter number of random routes you want to generate: \n"))
+    for i in range(random_route_num):
+        route = list(range(n_cities))
+        random.shuffle(route)
+        print(f"Random Route {i+1}: {route}, cost (including return): {evaluate_tsp(adjacency_matrix, route)}")
     return route
 
 if __name__ == "__main__":
@@ -54,11 +57,13 @@ if __name__ == "__main__":
     route = create_route()
     cost = evaluate_tsp(adjacency_matrix, route)
 
-    random_cost = evaluate_tsp(adjacency_matrix, random_route(n_cities))
+    # get random route and its cost
+    route_random = random_route(n_cities)
+    random_cost = evaluate_tsp(adjacency_matrix, route_random)
     
-    for row in adjacency_matrix:
-        print(row)
+    #for row in adjacency_matrix:
+    #    print(row)
     print("\nInput Route:", route)
     print("Total Cost (including return):", cost)
-    print("\nRandom Route:", random_cost)
+    print("\nRandom Route:", route_random)
     print("Total Random Cost (including return):", random_cost)
