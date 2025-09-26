@@ -1,4 +1,7 @@
+import random
+
 city_count = int(input("Enter City Count: "))
+n_cities = 4  # The TSP with 4 cities
 
 # Task 1
 def create_matrix(cities):
@@ -37,18 +40,25 @@ def evaluate_tsp(adjacency_matrix, route):
     return total_cost
 
 def create_route():
-    route = []
     route = list(map(int, input("Enter the route with spaces separating the numbers, like '0 1 2 3': ").strip().split()))
+    return route
 
+# Task 3
+def random_route(n_cities):
+    route = list(range(n_cities))
+    random.shuffle(route)
     return route
 
 if __name__ == "__main__":
     adjacency_matrix = create_matrix(city_count)
     route = create_route()
     cost = evaluate_tsp(adjacency_matrix, route)
+
+    random_cost = evaluate_tsp(adjacency_matrix, random_route(n_cities))
     
     for row in adjacency_matrix:
         print(row)
-
-    print("\nRoute:", route)
+    print("\nInput Route:", route)
     print("Total Cost (including return):", cost)
+    print("\nRandom Route:", random_cost)
+    print("Total Random Cost (including return):", random_cost)
